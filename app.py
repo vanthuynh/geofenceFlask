@@ -77,9 +77,9 @@ geoMEA = [
             }
         ]
 
-# @app.route('/ping', methods=['GET',])
-# def ping_pong():
-#     return jsonify('pong!')
+# @app.route('/',methods = ['GET'])
+# def ping():
+#     return jsonify(geoMEA)
 
 '''
 SUBMIT ALL: clear all data and add new submitted data
@@ -90,7 +90,7 @@ def add_geo_MAC():
     response_object = {'status': 'success'}
     if request.method == 'POST':
         geoData = request.get_json()
-        geoData.clear()
+        geoMAC.clear()
         #add keep in data
         geoMAC.append({
             'Coordinates': geoData[0].get('Coordinates'),
@@ -108,7 +108,6 @@ def add_geo_MAC():
         response_object['data'] = geoMAC
     return jsonify(response_object)
 
-
 @app.route('/MAC', methods=['DELETE'])
 def remove_geo_MAC():
     response_object = {'status': 'success'}
@@ -125,7 +124,7 @@ def add_geo_ERU():
     response_object = {'status': 'success'}
     if request.method == 'POST':
         geoData = request.get_json()
-        geoData.clear()
+        geoERU.clear()
         #add keep in data
         geoERU.append({
             'Coordinates': geoData[0].get('Coordinates'),
@@ -154,38 +153,36 @@ def remove_geo_ERU():
 SUBMIT ALL: clear all data and add new submitted data
 DELETE ALL: clear all data and leave it be
 '''
-@app.route('/ERU', methods=['GET', 'POST'])
-def add_geo_ERU():
+@app.route('/MEA', methods=['GET', 'POST'])
+def add_geo_MEA():
     response_object = {'status': 'success'}
     if request.method == 'POST':
         geoData = request.get_json()
-        geoData.clear()
+        geoMEA.clear()
         #add keep in data
-        geoERU.append({
+        geoMEA.append({
             'Coordinates': geoData[0].get('Coordinates'),
             'Keep_in': geoData[0].get('Keep_in'),
             'read': geoData[0].get('read')
         })
         #add keep out data
-        geoERU.append({
+        geoMEA.append({
             'Coordinates': geoData[1].get('Coordinates'),
             'Keep_in': geoData[1].get('Keep_in'),
             'read': geoData[1].get('read')
         })
         response_object['message'] = 'data added!'
     else:
-        response_object['data'] = geoERU
+        response_object['data'] = geoMEA
     return jsonify(response_object)
 
 
-@app.route('/ERU', methods=['DELETE'])
-def remove_geo_ERU():
+@app.route('/MEA', methods=['DELETE'])
+def remove_geo_MEA():
     response_object = {'status': 'success'}
-    geoERU.clear()
+    geoMEA.clear()
     response_object['message'] = 'data removed!'
     return jsonify(response_object)
-        
-    
 
 if __name__ == '__main__':
     app.run(debug=True) # remove boolean value for production build
