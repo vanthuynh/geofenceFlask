@@ -38,13 +38,20 @@ class Geofence():
             }
         ]
 
-    def addKeepInCoordinates(self, newCoordinates[]):
-        # list of dictionaries
-        for item in newCoordinates:
-            if item.value == float:
-                self.jsonFormat[0].update("Coordinates".append(item))
+    def addKeepInCoordinates(self, newCoordinates):
+        # Note: should handle type checking
+        self.jsonFormat[0]["Coordinates"].append(newCoordinates)
+        #### list of dictionaries
+        # for item in newCoordinates:
+        #     if item.value == float:
+        #         self.jsonFormat[0].update("Coordinates".append(item))
                 
-        # 2D array     
+        #### 2D array
 
-    def getKeepInCoordinates(self, newCoordinates):
-        return 
+    def addKeepOutCoordinates(self, newCoordinates):
+        self.jsonFormat[1]["Coordinates"].append(newCoordinates)
+
+    def getCoordinates(self, bound):
+        if bound == True:
+            return self.jsonFormat[0]
+        return self.jsonFormat[1]
