@@ -1,10 +1,36 @@
 # Simple CRUD API with dummy data
 
-- 2. One single-page python application with dummy data and they exist as long as the server still running 
+2. One single-page python application with dummy data and they exist as long as the server still running 
 
+### How To Run
+1. Install `virtualenv`:
+```
+$ pip install virtualenv
+```
 
+2. Open a terminal in the project root directory and run:
+```
+$ virtualenv env
+```
 
-## default geofence format
+3. Then run the command:
+```
+$ .\env\Scripts\activate
+or
+$ source env/Scripts/activate (for GitBash)
+```
+
+4. Then install the dependencies:
+```
+$ (env) pip install -r requirements.txt
+```
+
+5. Finally start the web server:
+```
+$ (env) python app.py
+```
+
+### default geofence format
 ```
 GEOFENCE = [
             {
