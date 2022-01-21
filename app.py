@@ -1,11 +1,10 @@
 from flask import Flask, jsonify, request
-
-# Configuration
-DEBUG = True
+from geofenceFormat import *
 
 #instantiate the app
 app = Flask(__name__)
 
+''' dummy data
 GEOFENCE = [
             {
                 "Coordinates": [
@@ -37,11 +36,13 @@ GEOFENCE = [
             }
         ]
 
+'''
+
 # @app.route('/ping', methods=['GET',])
 # def ping_pong():
 #     return jsonify('pong!')
 
-@app.route('/', methods=['GET'])
+@app.route('/', methods=['GET', 'POST'])
 def geofenceInOut():
     if request.method == 'GET':
         return jsonify(GEOFENCE)
@@ -53,4 +54,4 @@ def updateGeofence():
     
 
 if __name__ == '__main__':
-    app.run(debug=True) # remove boolean value when done
+    app.run(debug=True) # remove boolean value for production build

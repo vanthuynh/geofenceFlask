@@ -1,3 +1,10 @@
+'''
+    - OOP implementation of Geofence data
+    Note: 
+        + possible to add circle inputs later (if required)
+        + 
+'''
+
 class Geofence():
     def __init__(self):
         self.jsonFormat = [
@@ -14,8 +21,8 @@ class Geofence():
                 "Keep_in": False
             }
         ]
-    #finalize data format
-    def data_formal():
+    # initial instance of geofence data
+    def data_format():
         jsonFormat = [
             {
                 "Coordinates": [
@@ -30,9 +37,8 @@ class Geofence():
                 "Keep_in": False
             }
         ]
-    def setCoordinates(self, newCoordinates):
-        
 
+    def addKeepInCoordinates(self, newCoordinates[]):
         # list of dictionaries
         for item in newCoordinates:
             if item.value == float:
@@ -40,5 +46,5 @@ class Geofence():
                 
         # 2D array     
 
-    def getCoordinates(self, newCoordinates):
+    def getKeepInCoordinates(self, newCoordinates):
         return 
