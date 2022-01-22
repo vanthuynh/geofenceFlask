@@ -56,7 +56,10 @@ test = db.table('TEST')
 '''
 DELETE all tables
 '''
-db.truncate()
+MACTable.truncate()
+ERUTable.truncate()
+MEATable.truncate()
+test.truncate()
 
 
 
