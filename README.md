@@ -1,12 +1,37 @@
-# Different approaches for geofence API
+# Simple CRUD API with dummy data
 
-1. Implement geofence format using object oriented programming (it's easier to manipulate data and add/retrieve from database this way)
+2. One single-page python application with dummy data and they exist as long as the server still running 
 
-2. Implement simple CRUD API provided 3 lists of 3 vehicles
+### How To Run
+1. Install `virtualenv`:
+```
+$ pip install virtualenv
+```
 
-3. Use tinyDB to add/retrieve geofence data from json files
+2. Open a terminal in the project root directory and run:
+```
+$ virtualenv env
+```
 
-``` default format for geofence
+3. Then run the command:
+```
+$ .\env\Scripts\activate
+or
+$ source env/Scripts/activate (for GitBash)
+```
+
+4. Then install the dependencies:
+```
+$ (env) pip install -r requirements.txt
+```
+
+5. Finally start the web server:
+```
+$ (env) python app.py
+```
+
+### default geofence format
+```
 GEOFENCE = [
             {
                 "Coordinates": [
@@ -37,4 +62,5 @@ GEOFENCE = [
                 }
             }
         ]
+
 ```
