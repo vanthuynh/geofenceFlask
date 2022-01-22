@@ -89,19 +89,19 @@ DELETE ALL: clear all data and leave it be
 def add_geo_MAC():
     response_object = {'status': 'success'}
     if request.method == 'POST':
-        geoData = request.get_json()
+        geoData = request.get_json(force=True)
         geoMAC.clear()
         #add keep in data
         geoMAC.append({
-            'Coordinates': geoData[0].get('Coordinates'),
-            'Keep_in': geoData[0].get('Keep_in'),
-            'read': geoData[0].get('read')
+            'Coordinates': geoData['Geofence'][0].get('Coordinates'),
+            'Keep_in': geoData['Geofence'][0].get('Keep_in'),
+            'Circle_inputs': geoData['Geofence'][0].get('Circle_inputs')
         })
         #add keep out data
         geoMAC.append({
-            'Coordinates': geoData[1].get('Coordinates'),
-            'Keep_in': geoData[1].get('Keep_in'),
-            'read': geoData[1].get('read')
+            'Coordinates': geoData['Geofence'][1].get('Coordinates'),
+            'Keep_in': geoData['Geofence'][1].get('Keep_in'),
+            'Circle_inputs': geoData['Geofence'][1].get('Circle_inputs')
         })
         response_object['message'] = 'data added!'
     else:
@@ -123,19 +123,19 @@ DELETE ALL: clear all data and leave it be
 def add_geo_ERU():
     response_object = {'status': 'success'}
     if request.method == 'POST':
-        geoData = request.get_json()
+        geoData = request.get_json(force=True)
         geoERU.clear()
         #add keep in data
         geoERU.append({
             'Coordinates': geoData[0].get('Coordinates'),
             'Keep_in': geoData[0].get('Keep_in'),
-            'read': geoData[0].get('read')
+            'Circle_inputs': geoData[0].get('Circle_inputs')
         })
         #add keep out data
         geoERU.append({
             'Coordinates': geoData[1].get('Coordinates'),
             'Keep_in': geoData[1].get('Keep_in'),
-            'read': geoData[1].get('read')
+            'Circle_inputs': geoData[1].get('Circle_inputs')
         })
         response_object['message'] = 'data added!'
     else:
@@ -157,19 +157,19 @@ DELETE ALL: clear all data and leave it be
 def add_geo_MEA():
     response_object = {'status': 'success'}
     if request.method == 'POST':
-        geoData = request.get_json()
+        geoData = request.get_json(force=True)
         geoMEA.clear()
         #add keep in data
         geoMEA.append({
             'Coordinates': geoData[0].get('Coordinates'),
             'Keep_in': geoData[0].get('Keep_in'),
-            'read': geoData[0].get('read')
+            'Circle_inputs': geoData[0].get('Circle_inputs')
         })
         #add keep out data
         geoMEA.append({
             'Coordinates': geoData[1].get('Coordinates'),
             'Keep_in': geoData[1].get('Keep_in'),
-            'read': geoData[1].get('read')
+            'Circle_inputs': geoData[1].get('Circle_inputs')
         })
         response_object['message'] = 'data added!'
     else:
