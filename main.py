@@ -77,15 +77,15 @@ def submit_geofence(vehicle_id):
         response_object['message'] = 'data added!'
     else:
         # target = db.search(vehicle.vehicle_id == )
-        result = []
+        # result = []
         if vehicle_id == 'MAC':
             result = json.dumps(MACTable.all())
         elif vehicle_id == 'ERU':
             result = json.dumps(ERUTable.all())
         elif vehicle_id == 'MEA':
             result = json.dumps(MEATable.all())
-        # response_object['data'] = result
-    return jsonify(result)
+        response_object['data'] = result
+    return jsonify(response_object)
 
 
 @app.route('/geofence/<vehicle_id>', methods=['DELETE'])
