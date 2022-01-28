@@ -34,36 +34,45 @@ defaultGeo = {
 db = TinyDB('db.json')
 
 # create an instance of Query class that can help us search the database
-# vehicle = Query()
+vehicle = Query()
 
 # # change the name for the default table
 TinyDB.default_table_name = 'vehicleDB'
 
 # '''
-# CREATe tables
+# CREATE tables
 # '''
 # # # create tables with specific name and initialize them 
 MACTable = db.table('MAC')
-# # MACTable.insert(defaultGeo)
+# MACTable.insert(defaultGeo)
 ERUTable = db.table('ERU')
-# # ERUTable.insert(defaultGeo)
+# ERUTable.insert(defaultGeo)
 MEATable = db.table('MEA')
-# # MEATable.insert(defaultGeo)
-
-test = db.table('TEST')
-# # test.insert(defaultGeo)
+# MEATable.insert(defaultGeo)
 
 '''
-DELETE all tables
+SEARCH tables
 '''
-MACTable.truncate()
-ERUTable.truncate()
-MEATable.truncate()
-test.truncate()
-
-
-
+result = db.search(vehicle.1 == "Geofence")
+print(result)
+# result = db.get(doc_id=MACTable)
+# print(result)
+'''
+DELETE all tables (db.drop_tables())
+'''
+# MACTable.truncate()
+# ERUTable.truncate()
+# MEATable.truncate()
+# db.drop_table('MAC')
+# db.drop_table('ERU')
 # db.drop_table('MEA')
-# print(json.dumps(db.all(), indent = 2))
-print(db)
+
+
+'''
+PRINT
+'''
+print(json.dumps(MACTable.all(), indent = 2))
+# print(db.all())
+# print(MACTable["1"])
+# MACTable.all()
 
