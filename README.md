@@ -31,6 +31,37 @@ $ (env) python app.py
 ```
 
 ### default geofence format
+defaultGeo = {
+    "Geofence": [
+        {
+            "Coordinates": [
+                {"lat": 0.0, "lng": 0.0}
+            ],
+            "Keep_in": True,
+            "Circle_inputs": {
+              "lng": 0.0,
+              "lat": 0.0,
+              "rad": None
+            }
+        },
+        {
+            "Coordinates": [
+                {"lat": 0.0, "lng": 0.0}
+            ],
+            "Keep_in": False,
+            "Circle_inputs": {
+              "lng": 0.0,
+              "lat": 0.0,
+              "rad": None
+            }
+        }
+    ]
+}
+
+eruDropLocation = {'latitude': 0.0, 'longtitude': 0.0}
+homeCoordinates = {'latitude': 0.0, 'longtitude': 0.0}
+
+### Example geofence format
 ```
 {
     "Geofence": [

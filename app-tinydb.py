@@ -53,10 +53,10 @@ MEATable = db.table('MEA')
 '''
 SEARCH tables
 '''
-result = db.search(vehicle.1 == "Geofence")
-print(result)
-# result = db.get(doc_id=MACTable)
+# result = db.search(vehicle.1 == "Geofence")
 # print(result)
+result = db.get(doc_id=MACTable)
+print(result)
 '''
 DELETE all tables (db.drop_tables())
 '''
@@ -71,7 +71,7 @@ DELETE all tables (db.drop_tables())
 '''
 PRINT
 '''
-print(json.dumps(MACTable.all(), indent = 2))
+# print(json.dumps(MACTable.all(), indent = 2))
 # print(db.all())
 # print(MACTable["1"])
 # MACTable.all()
