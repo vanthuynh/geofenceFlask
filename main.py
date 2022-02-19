@@ -13,6 +13,7 @@ MACTable = db.table('MAC')
 ERUTable = db.table('ERU')
 MEATable = db.table('MEA')
 dropCoordinatesTable = db.table('drop_coordinates')
+searchAreaTable = db.table('search_area')
 
 # create an instance of Query class that can help us search the database
 query = Query()
@@ -43,8 +44,6 @@ def submit_geofence(vehicle_id):
             MEATable.insert(geoData)
         response_object['message'] = 'data added!'
     else:
-        # target = db.search(vehicle.vehicle_id == )
-        # result = []
         if vehicle_id == 'MAC':
             result = json.dumps(MACTable.all())
         elif vehicle_id == 'ERU':
@@ -72,11 +71,11 @@ def submit_drop_location(vehicle_id):
     if request.method == 'POST':
         drop_coordinates = request.get_json(force=True)
         if(vehicle_id == 'MAC'):
-            db.upsert(drop_coordinates, query.vehicle=='MAC')
+            dropCoordinatesTable.upsert(drop_coordinates, query.vehicle=='MAC')
         elif(vehicle_id == 'ERU'):
-            db.upsert(drop_coordinates, query.vehicle=='ERU')
+            dropCoordinatesTable.upsert(drop_coordinates, query.vehicle=='ERU')
         elif(vehicle_id == 'MEA'):
-            db.upsert(drop_coordinates, query.vehicle=='MEA')
+            dropCoordinatesTable.upsert(drop_coordinates, query.vehicle=='MEA')
         response_object['message'] = 'data added!'
     return jsonify(response_object)
 
@@ -85,14 +84,27 @@ def get_drop_location(vehicle_id):
     response_object = {'status': 'success'}
     if request.method == 'GET':
         if(vehicle_id == 'MAC'):
-            result=db.search(query.vehicle == 'MAC')
+            result=dropCoordinatesTable.search(query.vehicle == 'MAC')
         elif(vehicle_id == 'ERU'):
-            result=db.search(query.vehicle == 'ERU')
+            result=dropCoordinatesTable.search(query.vehicle == 'ERU')
         elif(vehicle_id == 'MEA'):
-            result=db.search(query.vehicle == 'MEA')
+            result=dropCoordinatesTable.search(query.vehicle == 'MEA')
         response_object['data'] = result
     return jsonify(response_object)
 
+@app.route('/submitSearchArea', methods=['POST'])
+def submit_search_area():
+    response_object = {'status': 'success'}
+    if request.method == 'POST':
+        search_area_coordinates = request.get_json(force=True)
+        searchAreaTable.insert(search_area_coordinates)
+        response_object['message'] = 'data added!'
+    return jsonify(response_object)
+
+
+
+####### commands that modify database without requests
+# db.drop_table('_default')
 
 if __name__ == '__main__':
     app.run(debug=True) # remove boolean value for production build

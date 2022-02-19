@@ -1,1 +1,1 @@
-{"MAC": {}, "ERU": {}, "MEA": {}, "_default": {"1": {"vehicle": "MAC", "latitude": 35.12345, "longtitude": 44.12345}}}
+{"MAC": {}, "ERU": {}, "MEA": {}, "drop_coordinates": {"1": {"vehicle": "MAC", "latitude": 35.12345, "longtitude": 44.12345}}, "search_area": {"1": {"SearchArea": [{"longtitude": 99.12345, "latitude": 88.12345}, {"longtitude": 99.12345, "latitude": 88.12345}, {"longtitude": 99.12345, "latitude": 88.12345}, {"longtitude": 99.12345, "latitude": 88.12345}, {"longtitude": 99.12345, "latitude": 88.12345}]}}}
