@@ -13,7 +13,7 @@ MACTable = db.table('MAC')
 ERUTable = db.table('ERU')
 MEATable = db.table('MEA')
 dropCoordinatesTable = db.table('drop_coordinates')
-searchAreaTable = db.table('search_area')
+searchAreaTable = db.table('search_area_coordinates')
 
 # create an instance of Query class that can help us search the database
 query = Query()
@@ -92,11 +92,12 @@ def get_drop_location(vehicle_id):
         response_object['data'] = result
     return jsonify(response_object)
 
-@app.route('/submitSearchArea', methods=['POST'])
+@app.route('/postSearchArea', methods=['POST'])
 def submit_search_area():
     response_object = {'status': 'success'}
     if request.method == 'POST':
         search_area_coordinates = request.get_json(force=True)
+        searchAreaTable.truncate()
         searchAreaTable.insert(search_area_coordinates)
         response_object['message'] = 'data added!'
     return jsonify(response_object)
@@ -105,6 +106,7 @@ def submit_search_area():
 
 ####### commands that modify database without requests
 # db.drop_table('_default')
+# db.drop_table('search_area_coordinates')
 
 if __name__ == '__main__':
     app.run(debug=True) # remove boolean value for production build
