@@ -2,6 +2,7 @@ from urllib import response
 from flask import Flask, jsonify, request
 from tinydb import TinyDB, Query
 import json
+# from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
 
@@ -102,6 +103,14 @@ def submit_search_area():
         response_object['message'] = 'data added!'
     return jsonify(response_object)
 
+@app.route('/getSearchArea', methods=['GET'])
+def get_search_area():
+    response_object = {'status': 'success'}
+    if request.method == 'GET':
+        result = json.dumps(searchAreaTable.all())
+        response_object['data'] = result
+    return jsonify(response_object)
+
 
 
 ####### commands that modify database without requests
@@ -109,4 +118,4 @@ def submit_search_area():
 # db.drop_table('search_area_coordinates')
 
 if __name__ == '__main__':
-    app.run(debug=True) # remove boolean value for production build
+    app.run(host="localhost", port=9000, debug=True) # remove boolean value for production build
