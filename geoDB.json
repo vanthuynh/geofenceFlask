@@ -7,6 +7,11 @@
             "vehicle": "MAC",
             "latitude": 35.12345,
             "longtitude": 44.12345
+        },
+        "2": {
+            "vehicle": "ERU",
+            "latitude": 19.12345,
+            "longtitude": 21.12345
         }
     },
     "search_area_coordinates": {

@@ -63,8 +63,7 @@ def remove_geofence(vehicle_id):
         ERUTable.truncate()
     elif(vehicle_id == 'MEA'):
         MEATable.truncate()
-    else:
-        pass
+    else: pass
     return "DELETE SUCCESS"
 
 @app.route('/postDropLocation/<vehicle_id>', methods=['POST'])
@@ -76,8 +75,7 @@ def post_drop_location(vehicle_id):
             dropCoordinatesTable.upsert(drop_coordinates, query.vehicle=='MAC')
         elif(vehicle_id == 'ERU'):
             dropCoordinatesTable.upsert(drop_coordinates, query.vehicle=='ERU')
-        elif(vehicle_id == 'MEA'):
-            dropCoordinatesTable.upsert(drop_coordinates, query.vehicle=='MEA')
+        else: pass
         response_object['message'] = 'data added!'
     return jsonify(response_object)
 
@@ -89,8 +87,7 @@ def get_drop_location(vehicle_id):
             result=dropCoordinatesTable.search(query.vehicle == 'MAC')
         elif(vehicle_id == 'ERU'):
             result=dropCoordinatesTable.search(query.vehicle == 'ERU')
-        elif(vehicle_id == 'MEA'):
-            result=dropCoordinatesTable.search(query.vehicle == 'MEA')
+        else: pass
         response_object['data'] = result
     return jsonify(response_object)
 
