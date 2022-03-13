@@ -31,5 +31,17 @@
                 }
             ]
         }
+    },
+    "evacuation_coordinates": {
+        "1": {
+            "vehicle": "MEA",
+            "latitude": 46,
+            "longtitude": 52.2
+        },
+        "2": {
+            "vehicle": "ERU",
+            "latitude": 46,
+            "longtitude": 52.2
+        }
     }
 }

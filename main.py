@@ -14,6 +14,7 @@ MACTable = db.table('MAC')
 ERUTable = db.table('ERU')
 MEATable = db.table('MEA')
 dropCoordinatesTable = db.table('drop_coordinates')
+evacuationCoordinatesTable = db.table('evacuation_coordinates')
 searchAreaTable = db.table('search_area_coordinates')
 
 # create an instance of Query class that can help us search the database
@@ -87,6 +88,31 @@ def get_drop_location(vehicle_id):
             result=dropCoordinatesTable.search(query.vehicle == 'MAC')
         elif(vehicle_id == 'ERU'):
             result=dropCoordinatesTable.search(query.vehicle == 'ERU')
+        else: pass
+        response_object['data'] = result
+    return jsonify(response_object)
+
+@app.route('/postEvacuationZone/<vehicle_id>', methods=['POST'])
+def post_evacuation_zone(vehicle_id):
+    response_object = {'status': 'success'}
+    if request.method == 'POST':
+        evacuation_coordinates = request.get_json(force=True)
+        if(vehicle_id == 'MEA'):
+            evacuationCoordinatesTable.upsert(evacuation_coordinates, query.vehicle=='MEA')
+        elif(vehicle_id == 'ERU'):
+            evacuationCoordinatesTable.upsert(evacuation_coordinates, query.vehicle=='ERU')
+        else: pass
+        response_object['message'] = 'data added!'
+    return jsonify(response_object)
+
+@app.route('/getEvacuationZone/<vehicle_id>', methods=['GET'])
+def get_evacuation_zone(vehicle_id):
+    response_object = {'status': 'success'}
+    if request.method == 'GET':
+        if(vehicle_id == 'MEA'):
+            result=evacuationCoordinatesTable.search(query.vehicle == 'MEA')
+        elif(vehicle_id == 'ERU'):
+            result=evacuationCoordinatesTable.search(query.vehicle == 'ERU')
         else: pass
         response_object['data'] = result
     return jsonify(response_object)
