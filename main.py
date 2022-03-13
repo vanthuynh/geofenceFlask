@@ -19,7 +19,7 @@ searchAreaTable = db.table('search_area_coordinates')
 # create an instance of Query class that can help us search the database
 query = Query()
 
-# # function for debugging purpose
+############## function for debugging purpose ################
 # @app.route('/', methods=['GET', 'POST'])
 # def debug():
 #     # print(db.all())
@@ -63,11 +63,12 @@ def remove_geofence(vehicle_id):
         ERUTable.truncate()
     elif(vehicle_id == 'MEA'):
         MEATable.truncate()
+    else:
+        pass
     return "DELETE SUCCESS"
 
-# @app.route('/gcs/<vehicle_id>/drop_location', method=['GET', 'POST'])
-@app.route('/<vehicle_id>/submitDropLocation', methods=['POST'])
-def submit_drop_location(vehicle_id):
+@app.route('/postDropLocation/<vehicle_id>', methods=['POST'])
+def post_drop_location(vehicle_id):
     response_object = {'status': 'success'}
     if request.method == 'POST':
         drop_coordinates = request.get_json(force=True)
@@ -80,7 +81,7 @@ def submit_drop_location(vehicle_id):
         response_object['message'] = 'data added!'
     return jsonify(response_object)
 
-@app.route('/<vehicle_id>/getDropLocation', methods=['GET'])
+@app.route('/getDropLocation/<vehicle_id>', methods=['GET'])
 def get_drop_location(vehicle_id):
     response_object = {'status': 'success'}
     if request.method == 'GET':
@@ -94,7 +95,7 @@ def get_drop_location(vehicle_id):
     return jsonify(response_object)
 
 @app.route('/postSearchArea', methods=['POST'])
-def submit_search_area():
+def post_search_area():
     response_object = {'status': 'success'}
     if request.method == 'POST':
         search_area_coordinates = request.get_json(force=True)
