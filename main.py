@@ -9,7 +9,7 @@ app = Flask(__name__)
 # create db.json file for storing geofence data
 db = TinyDB('geoDB.json')
 
-# create tables with specific name and initialize them 
+# create tables with specific name and initialize them
 MACTable = db.table('MAC')
 ERUTable = db.table('ERU')
 MEATable = db.table('MEA')
@@ -27,8 +27,8 @@ query = Query()
 #     return json.dumps(MACTable.all())
 
 '''
-SUBMIT ALL: clear all data and add new submitted data
-DELETE ALL: clear all data and leave it be
+    SUBMIT ALL: clear all data and add new submitted data
+    DELETE ALL: clear all data and leave it be
 '''
 @app.route('/gcs/geofence/<vehicle_id>', methods=['GET', 'POST'])
 def submit_geofence(vehicle_id):
@@ -55,7 +55,7 @@ def submit_geofence(vehicle_id):
         response_object['data'] = result
     return jsonify(response_object)
 
-
+# geofence is required for all 3 vehicles
 @app.route('/gcs/geofence/<vehicle_id>', methods=['DELETE'])
 def remove_geofence(vehicle_id):
     if(vehicle_id == 'MAC'):
@@ -67,6 +67,7 @@ def remove_geofence(vehicle_id):
     else: pass
     return "DELETE SUCCESS"
 
+# only MAC and ERU
 @app.route('/postDropLocation/<vehicle_id>', methods=['POST'])
 def post_drop_location(vehicle_id):
     response_object = {'status': 'success'}
@@ -80,6 +81,7 @@ def post_drop_location(vehicle_id):
         response_object['message'] = 'data added!'
     return jsonify(response_object)
 
+# only MAC and ERU
 @app.route('/getDropLocation/<vehicle_id>', methods=['GET'])
 def get_drop_location(vehicle_id):
     response_object = {'status': 'success'}
@@ -92,6 +94,7 @@ def get_drop_location(vehicle_id):
         response_object['data'] = result
     return jsonify(response_object)
 
+# only MEA and ERU
 @app.route('/postEvacuationZone/<vehicle_id>', methods=['POST'])
 def post_evacuation_zone(vehicle_id):
     response_object = {'status': 'success'}
@@ -105,6 +108,7 @@ def post_evacuation_zone(vehicle_id):
         response_object['message'] = 'data added!'
     return jsonify(response_object)
 
+# only MEA and ERU
 @app.route('/getEvacuationZone/<vehicle_id>', methods=['GET'])
 def get_evacuation_zone(vehicle_id):
     response_object = {'status': 'success'}
